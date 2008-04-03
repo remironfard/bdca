@@ -60,7 +60,23 @@ Output:
 
 == pop_bdca_constrica.m ==
 
-EEG = pop_bdca_constrica(EEG,alpha)
+Resolve the ambiguities by constrained independent component analysis.
+
+{{{
+synopsis:
+ 
+    EEG = pop_bdca_constrica(EEG,alpha)
+ 
+  input:
+ 
+    alpha  :  Set it so that the algorithm converges smoothly.
+              try e.g. alpha = 1000 
+ 
+  output:
+ 
+    EEG.bdca.ica.G      : ambiguity matrix
+    EEG.bdca.ica.alpha  : remember the alpha used
+ }}}
 
 ----
 
