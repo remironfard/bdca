@@ -18,6 +18,8 @@ EEG = pop_bdca_constrica(EEG,alpha)
 
 == bilinlogistregmultigp ==
 
+Train a bilinear classifier with Gaussian Process regularization.
+
 {{{
 synopsis:
  
