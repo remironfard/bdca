@@ -2,6 +2,24 @@
 
 = Functions that work with the EEG struct =
 
+== pop_bdca_mat2labels.m ==
+
+Import the labels from a Matlab variable
+
+{{{
+EEG = pop_bdca_mat2labels(EEG,labels)
+
+ input
+
+    labels : can be the name of a variable, or a numeric vector
+             with the labels in {0,1}
+
+ output
+
+    EEG.bdca.labels  :  the labels
+ 
+}}}
+
 == pop_bdca_train.m ==
 
 EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
