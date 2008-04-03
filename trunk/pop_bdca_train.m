@@ -1,5 +1,17 @@
 function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
-% EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
+% synopsis:
+%
+%   EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
+%
+%  input:
+%
+%
+%  output:
+%
+%
+%
+%
+% 
 
 % process commandline
 if nargin < 9
