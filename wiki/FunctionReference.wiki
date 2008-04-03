@@ -49,3 +49,11 @@ synopsis:
  
   Dependencies: OGP, IMMOPTIBOX
 }}}
+
+== bilinlogistregmultigp_run.m ==
+
+Classify
+
+{{{
+[Ey,pot] = bilinlogistregmultigp_run(x,w0,a,b)
+}}}
