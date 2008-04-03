@@ -2,21 +2,23 @@
 
 = Functions that work with the EEG struct =
 
-== pop_bdca_train ==
+== pop_bdca_train.m ==
 
 EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 
-== pop_bdca_run ==
+== pop_bdca_run.m ==
 
 EEG = pop_bdca_run(EEG)
 
-== pop_bdca_constrica ==
+== pop_bdca_constrica.m ==
 
 EEG = pop_bdca_constrica(EEG,alpha)
 
+----
+
 = Auxiliary functions =  
 
-== bilinlogistregmultigp ==
+== bilinlogistregmultigp.m ==
 
 Train a bilinear classifier with Gaussian Process regularization.
 
