@@ -26,7 +26,22 @@ EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 
 == pop_bdca_run.m ==
 
-EEG = pop_bdca_run(EEG)
+Classify EEG
+
+{{{
+Synopsis:
+
+     EEG = pop_bdca_run(EEG)
+
+Output:
+ 
+     EEG.bdca.Ey    : Ey(n)  = E[y(n)]
+     EEG.bdca.pot   : pot(n) = pi(Xn)
+ 
+     if G is present (i.e. if you ran POP_BDCA_CONSTRICA)
+ 
+        EEG.bdca.ica.S : Independent "source" across trials. 
+ }}}
 
 == pop_bdca_constrica.m ==
 
