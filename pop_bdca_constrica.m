@@ -1,12 +1,14 @@
 function EEG = pop_bdca_constrica(EEG,alpha)
-% EEG = pop_bdca_constrica(EEG,alpha)
+% synopsis:
 %
-% input
+%   EEG = pop_bdca_constrica(EEG,alpha)
+%
+% input:
 %
 %   alpha  :  Set it so that the algorithm converges smoothly.
 %             try e.g. alpha = 1000 
 %
-% output
+% output:
 %
 %   EEG.bdca.ica.G      : ambiguity matrix
 %   EEG.bdca.ica.alpha  : remember the alpha used
