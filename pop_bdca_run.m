@@ -1,5 +1,7 @@
 function EEG = pop_bdca_run(EEG)
-% EEG = pop_bdca_run(EEG)
+% Synopsis:
+%
+%    EEG = pop_bdca_run(EEG)
 %
 % Output:
 %
