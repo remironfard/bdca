@@ -22,7 +22,22 @@ EEG = pop_bdca_mat2labels(EEG,labels)
 
 == pop_bdca_train.m ==
 
-EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
+Train a classifier
+
+{{{
+synopsis:
+ 
+    EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
+ 
+   input:
+ 
+ 
+   output:
+ 
+ 
+ 
+ 
+  }}}
 
 == pop_bdca_run.m ==
 
