@@ -1,13 +1,47 @@
 #summary User Manual.
 
-= Introduction =
+= Functions that work with the EEG struct =
 
-Add your content here.
+== pop_bdca_train ==
 
+EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 
-= Details =
+== pop_bdca_run ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+EEG = pop_bdca_run(EEG)
+
+== pop_bdca_constrica ==
+
+EEG = pop_bdca_constrica(EEG,alpha)
+
+= Auxiliary functions =  
+
+== bilinlogistregmultigp ==
+
+{{{
+synopsis:
+ 
+     [w0,a,b,Ka,Kb] = bilinlogistregmultigp(x_train,y_train,R,sigw0)
+     [w0,a,b,Ka,Kb] = bilinlogistregmultigp(x_train,y_train,R,sigw0,gpa,gpb,spaceunits)
+ 
+  inputs:
+ 
+      x_train  : D-by-T-by-N data
+      y_train  : 1-by-N, binary labels in {0,1}
+            R  : number of components
+        sigw0  : prior stddev of w0
+      gpa,gpb  : prior covariance parameters for a and b resp.
+                 : if left out, defaults to sigw0.
+                 : otherwise, a scalar gives the prior stddev.
+                 : otherwise, a vector [sigma l] defines a GP with SE cov. function.
+                 : otherwise, a vector [sigma l nu] defines a GP with Matern cov. function
+   spaceunits  : (optional) spatial coords in euclidian basis [x y z; x y z; etc].
+ 
+   
+    outputs:
+ 
+         w0,a,b : you know.
+          Ka,Kb : covariancematrices for a and b respectively.  
+ 
+  Dependencies: OGP, IMMOPTIBOX
+}}}
