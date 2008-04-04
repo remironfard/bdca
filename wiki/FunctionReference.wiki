@@ -132,3 +132,11 @@ A = auc(L,fi)
     L  : a vector with the true labels in {0,1}
     fi : a vector with the "soft" predictions
 }}}
+
+== bilinlogistregmultigp_bayes.m ==
+
+Bayesian model selection
+
+{{{
+[BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
+}}}
