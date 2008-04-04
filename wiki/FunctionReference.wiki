@@ -121,3 +121,14 @@ Classify
 {{{
 [Ey,pot] = bilinlogistregmultigp_run(x,w0,a,b)
 }}}
+
+== auc.m ==
+
+Compute the area under the ROC curve.
+
+{{{
+A = auc(L,fi)
+ 
+    L  : a vector with the true labels in {0,1}
+    fi : a vector with the "soft" predictions
+}}}
