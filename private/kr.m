@@ -1,5 +1,9 @@
 function M = kr(X,Y)
+% synopsis:
 %
+%   M = kr(X,Y)
+%
+%  M = X|x|Y , where |x| is Khatri-Rao product.
 
 [I,K]=size(X);
 
