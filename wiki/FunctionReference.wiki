@@ -108,7 +108,7 @@ synopsis:
 
 ----
 
-= Auxiliary functions =  
+= Behind the scenes =  
 
 == bilinlogistregmultigp.m ==
 
