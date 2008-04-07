@@ -5,13 +5,41 @@ function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 %
 %  input:
 %
+%        EEG : The epoched EEGLAB dataset. The epoch labels must be present
+%              in EEG.bdca.labels. You can use pop_bdca_mat2labels(...) 
+%              to do that.
+%          R : The number of components.
+%      sigma : Regularization strength (std dev of parameters).
+%              low => more regularization, high  => less regularization.
+%              Typical values are between 0.001 and 1.
+%         lt : Temporal smoothing length scale in MILLISECONDS.
+%              Typical values are between 10 and 100.
+%        nut : Temporal smoothing shape parameter.
+%              Low => more ripple, High => less ripple.
+%              Typical value is nut = 2.5.
+%         ls : Spatial smoothness length scale. Only valid if the
+%              dataset has electrode locations. Set to [] to disable.
+%              Typical value = 0.1  (the unit is in EEGLAB relative head units).
+%        nus : Spatial smoothness ripple. Typical value = 100. Set to [] to disable.
+%      folds : How many folds for crossvalidation. Set to 1 for training using the
+%              entire set. Set to e.g. 5 for 5-fold crossvalidation.
+%
 %
 %  output:
 %
+%      if fold (see above) == 1
+%
+%         EEG.bdca.cht.u = u : the spatial components.
+%         EEG.bdca.cht.t = t : the temporal components.
+%         EEG.bdca.cht.b = b : the logistic argument offset.
+%
+%      if fold (see above) > 1
 %
 %
+%         EEG.bdca.cvstats.Az = A            : cross validated AUC.
+%         EEG.bdca.cvstats.loglik = loglik;  : cross validated log likelihood.
 %
-% 
+% Author: Mads Dyrholm.
 
 % process commandline
 if nargin < 9
