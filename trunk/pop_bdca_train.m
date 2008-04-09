@@ -21,6 +21,10 @@ function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 %              dataset has electrode locations. Set to [] to disable.
 %              Typical value = 0.1  (the unit is in EEGLAB relative head units).
 %        nus : Spatial smoothness ripple. Typical value = 100. Set to [] to disable.
+%  supportframes : a vector with the temporal indices (samples) 
+%                  within epoch to use for training. Set to [] to use the 
+%                  entire epoch for training. If set otherwise, then 
+%                  EEG.data(:,supportframes,:) will be used.
 %      folds : How many folds for crossvalidation. Set to 1 for training using the
 %              entire set. Set to e.g. 5 for 5-fold crossvalidation.
 %
