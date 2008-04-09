@@ -50,7 +50,7 @@ Train a classifier
    supportframes : a vector with the temporal indices (samples) 
                    within epoch to use for training. Set to [] to use the 
                    entire epoch for training. If set otherwise, then 
-                   EEG.data(:,:,supportframes) will be used.
+                   EEG.data(:,supportframes,:) will be used.
        folds : How many folds for crossvalidation. Set to 1 for training using the
                entire set. Set to e.g. 5 for 5-fold crossvalidation.
  
