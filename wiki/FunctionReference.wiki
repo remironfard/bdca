@@ -22,7 +22,7 @@ EEG = pop_bdca_mat2labels(EEG,labels)
 
 == pop_bdca_train.m ==
 
-Train an EEG classifier. This function is an EEG wrapper for the `bilinlogistregmultigp.m` program.
+Train an EEG classifier. This function is a wrapper for the `bilinlogistregmultigp.m` program.
 
 {{{
  synopsis:
