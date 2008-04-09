@@ -167,7 +167,7 @@ A = auc(L,fi)
 
 == bilinlogistregmultigp_bayes.m ==
 
-Bayesian model selection. I haven't tested this function yet! - The cholesky might fail, the Hessian is not necessarily positive definite.
+Bayesian model selection. I haven't tested this function yet! - The cholesky might fail, the Hessian is not necessarily positive definite. But, BIC should work, no matter what.
 
 {{{
 [BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
