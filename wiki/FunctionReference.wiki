@@ -167,7 +167,13 @@ A = auc(L,fi)
 
 == bilinlogistregmultigp_bayes.m ==
 
-Bayesian model selection. I haven't tested this function yet! - The cholesky might fail, the Hessian is not necessarily positive definite. But, BIC should work, no matter what.
+Bayesian model selection / Marginal Likelihood. I haven't tested this function yet! - The cholesky might fail, the Hessian is not necessarily positive definite. But, BIC should work, no matter what.
+
+In fact, a precedure for model tuning could be this:
+
+
+  # Select (and fix) the GP hyperparameters using Laplace with R=1.
+  # Then increase R. Laplace is more likely to fail with R>1 hence use BIC in this step.
 
 {{{
 [BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
