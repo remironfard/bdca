@@ -172,7 +172,7 @@ Bayesian model selection / Marginal Likelihood. I haven't tested this function y
 In fact, a precedure for model tuning could be this:
 
 
-  # Select (and fix) the GP hyperparameters using Laplace with R=1.
+  # Select (and fix) the GP hyperparameters using Laplace with R=1. BIC is no good for this purpose, since it does not depend on the prior.
   # Then increase R. Laplace is more likely to fail with R>1 hence use BIC in this step.
 
 {{{
