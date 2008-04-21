@@ -1,12 +1,22 @@
 function [BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
-% [BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
+% Synopsis:
+%
+%  [BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
+%
+%    or to avoid the Cholesky of the Hessian:
+%
+%  BIC = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
 %
 % Author: Mads Dyrhholm
 [f,G,H0] = cost_logistreg_bilinmultigp(w0,a,b,X3,y,sigw0,Kl,Kr);
-logdetH0 = 2*sum(log(diag(chol(H0))));
+
 dim_theta = length(w0) + length(a(:)) + length(b(:));
-Laplace = -f + 0.5 * dim_theta * log(2*pi) - 0.5 * logdetH0;
 BIC = -f - 0.5 * dim_theta * log(size(X3,3));
+if nargout>1
+  logdetH0 = 2*sum(log(diag(chol(H0))));
+  Laplace = -f +0.5 * dim_theta * log(2*pi) - 0.5 * logdetH0;
+end
+
 
 
 function [f,G,H0] = cost_logistreg_bilinmultigp(w0,a,b,X3,y,Ka,Kl,Kr)
