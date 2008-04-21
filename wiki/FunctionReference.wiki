@@ -176,5 +176,9 @@ In fact, a procedure for model tuning could be this:
   # Then increase R. Laplace is more likely to fail with R>1 hence use BIC in this step.
 
 {{{
-[BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
+  [BIC,Laplace] = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
+ 
+    or to avoid the Cholesky of the Hessian:
+ 
+  BIC = bilinlogistregmultigp_bayes(w0,a,b,X3,y,sigw0,Kl,Kr)
 }}}
