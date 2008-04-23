@@ -86,7 +86,7 @@ end
 
 % train
 spaceunits = [];
-if ~isempty(EEG.chanlocs)
+if ~isempty(EEG.chanlocs) & ~isempty(nus) & ~isempty(ls)
   for d = 1:length(EEG.chanlocs)
     spaceunits(d,1:3) = [EEG.chanlocs(d).X EEG.chanlocs(d).Y EEG.chanlocs(d).Z];
   end
