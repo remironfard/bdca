@@ -17,9 +17,10 @@ function [w0,a,b,Kl,Kr] = bilinlogistregmultigp(x_train,y_train,R,sigw0,gpa,gpb,
 %                : otherwise, a scalar gives the prior stddev.
 %                : otherwise, a vector [sigma l] defines a GP with SE cov. function.
 %                : otherwise, a vector [sigma l nu] defines a GP with Matern cov. function
-%  spaceunits  : (optional) spatial coords in euclidian basis [x y z; x y z; etc].
+%  spaceunits  : Spatial coords in euclidian basis [x y z; x y z; etc].
+%                Set it to [] if you don't want to declare spatial smoothness, or if
+%                you don't have electrode coordinates.
 %
-%  
 %   outputs:
 %
 %        w0,a,b : you know.
