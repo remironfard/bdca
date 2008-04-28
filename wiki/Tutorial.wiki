@@ -1,6 +1,6 @@
 #summary Tutorial.
 
-= Tips for the tuning parameters =
+= Tips on tuning the parameters =
 
 First, set R to 1
 {{{
@@ -27,4 +27,4 @@ repeat the above step until you find a good lt. If you have channel locations, t
 {{{
 >> gpa = [sigma ls nus];
 }}}
-good luck.
+Finally, you can start to increase R in increments of 1.
