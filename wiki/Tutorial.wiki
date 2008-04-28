@@ -1,0 +1,30 @@
+#summary Tutorial.
+
+= Tips for the tuning parameters =
+
+First, set R to 1
+{{{
+>> R = 1
+}}}
+Set sigw0 to some high number, like 5
+{{{
+>> sigw0 = 5;
+}}}
+Then, tune sigma for space and time
+{{{
+>> gpa = [sigma];
+>> gpb = [sigma];
+>> spaceunits = [];
+>> [w0,a,b] = bilinlogistregmultigp(X,y,R,sigw0,gpa,gpb,spaceunits);
+}}}
+repeat the above step until you find a good sigma (use cross validation!). Then, start tuning the temporal smoothness. I recommend setting nut to 2.5, and then try different values for lt.
+{{{
+>> nut = 2.5;
+>> gpb = [sigma lt nut];
+>> [w0,a,b] = bilinlogistregmultigp(X,y,R,sigw0,gpa,gpb,spaceunits);
+}}} 
+repeat the above step until you find a good lt. If you have channel locations, then you can tune the spatial smoothness. First, you have to set spaceunits non-empty. Then start tuning nus and ls.
+{{{
+>> gpa = [sigma ls nus];
+}}}
+good luck.
