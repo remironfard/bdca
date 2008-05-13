@@ -22,7 +22,7 @@ EEG = pop_bdca_mat2labels(EEG,labels)
 
 == pop_bdca_event2labels.m ==
 
-Import the labels from a EEG.epoch(*).event* 
+Import the labels from a EEG.epoch(...).event... 
 
 {{{
 EEG = pop_bdca_event2labels(EEG,contrast,versus)
