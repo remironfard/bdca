@@ -20,6 +20,23 @@ EEG = pop_bdca_mat2labels(EEG,labels)
  
 }}}
 
+== pop_bdca_event2labels.m ==
+
+Import the labels from a EEG.epoch(*).event* 
+
+{{{
+EEG = pop_bdca_event2labels(EEG,contrast,versus)
+
+ input
+
+    
+
+ output
+
+    EEG.bdca.labels  :  the labels
+ 
+}}}
+
 == pop_bdca_train.m ==
 
 Train an EEG classifier. This function is a wrapper for the `bilinlogistregmultigp.m` program.
