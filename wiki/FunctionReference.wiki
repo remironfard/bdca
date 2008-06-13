@@ -128,6 +128,25 @@ synopsis:
     EEG.bdca.ica.alpha  : remember the alpha used
  }}}
 
+== pop_bdca_forward_parafac.m ==
+
+After running pop_bdca_constrica(...) use this this function to get the least-squares component scalp maps and time courses.
+
+{{{
+  synopsis:
+ 
+    EEG = pop_bdca_forward_parafac(EEG)
+ 
+  output:
+ 
+    EEG.bdca.fwd.parafac  :  the 'Factors' output from PARAFAC ( >> help parafac )
+ 
+  dependencies:
+ 
+    NWAY toolbox
+}}}
+
+
 ----
 
 = Behind the scenes =  
