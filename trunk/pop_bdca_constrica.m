@@ -11,6 +11,7 @@ function EEG = pop_bdca_constrica(EEG,alpha)
 % output:
 %
 %   EEG.bdca.ica.G      : ambiguity matrix
+%   EEG.bdca.ica.S      : independent component sources
 %   EEG.bdca.ica.alpha  : remember the alpha used
 %
 % Author: Mads Dyrholm
@@ -18,7 +19,7 @@ function EEG = pop_bdca_constrica(EEG,alpha)
 % process commandline
 if nargin < 2
   prompt={'Alpha'};
-  name='Input for sidekick';
+  name='Input for constrica';
   numlines=1;
   defaultanswer={'1000'};
   try 
@@ -38,7 +39,7 @@ else
   [G,alpha,S,Ci,Co,info] = constrica(double(EEG.data(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.cht.u,EEG.bdca.cht.t);
 end
 EEG.bdca.ica.G = G;
-
+EEG.bdca.ica.S = S;
 
 % huske
 EEG.bdca.ica.alpha             = alpha;  
