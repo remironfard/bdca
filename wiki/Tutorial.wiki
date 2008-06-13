@@ -1,6 +1,9 @@
 #summary Tutorial.
 
-= Tips on tuning the parameters =
+  This tutorial needs work !!!
+
+---
+= Tips on tuning the parameters with bilinlogistregmulti =
 
 First, set R to 1
 {{{
