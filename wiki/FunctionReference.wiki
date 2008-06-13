@@ -124,6 +124,7 @@ synopsis:
   output:
  
     EEG.bdca.ica.G      : ambiguity matrix
+    EEG.bdca.ica.S      : independent component sources
     EEG.bdca.ica.alpha  : remember the alpha used
  }}}
 
