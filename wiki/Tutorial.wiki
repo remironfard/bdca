@@ -52,14 +52,23 @@ happy = [];
 for sigma=logspace(-2,0,30)
   EEG = pop_bdca_train(EEG,R,sigma,[],[],[],[],[],5);
   happy = [happy; sigma,EEG.bdca.cvstats.Az];
+end
 }}}
 and then choosing the `sigma` which has the highest `Az` in the result `happy`. Or, like I said, use the log-likelihood.
 
-==Tuning temporal smoothness==
+==Step 4. Tuning temporal smoothness==
 
-==Tuning spatial smoothness==
+Now the time has come to start tuning the temporal smoothness. I recommend setting `nut=2.5` but you might find a different value to love. Anyway, tune `lt`...
+{{{
+lt=30;  % this means that we expect 30 milliseconds smoothness
+nut=2.5;
+EEG = pop_bdca_train(EEG,R,sigma,lt,nut,[],[],[],5);
+}}}
+and, again, look at `EEG.bdca.cvstats.Az` or `loglik`. As before with `sigma`, make a for-loop for finding the best `lt`.
 
-==Increasing the number of components==
+==Step 5. Tuning spatial smoothness==
+
+==Step 6. Increasing the number of components==
 
 
 ----
