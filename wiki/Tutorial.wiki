@@ -38,6 +38,22 @@ EEG = pop_bdca_event2labels(EEG,{160 170},80);
 You can manually set the labels by changing `EEG.bdca.labels`. The function `pop_bdca_mat2labels` is meant to help you with that.
 
 ==Step 3. Tuning sigma==
+We're gonna tune `sigma` using 5-fold cross validation. Our initial guess is `sigma=0.1`, and also let's set `R=1` because it is much faster than `R>1` and it is sufficient for tuning `sigma`:
+{{{
+R=1;
+sigma=0.1;
+EEG = pop_bdca_train(EEG,R,sigma,[],[],[],[],[],5);
+}}}
+when it is done, you can see the performance ROC area in the variable `EEG.bdca.cvstats.Az`. The cross validated log-likelihood is also there in `EEG.bdca.cvstats.loglik`. So you can tune your model looking at either one.
+
+So, now you could imagine tuning this by hand, or making a for loop and choosing `sigma` based on the Az or loglik. Note that sigma should be sweeped on a logarithmic scale, say
+{{{
+happy = [];
+for sigma=logspace(-2,0,30)
+  EEG = pop_bdca_train(EEG,R,sigma,[],[],[],[],[],5);
+  happy = [happy; sigma,EEG.bdca.cvstats.Az];
+}}}
+and then choosing the `sigma` which has the highest `Az` in the result `happy`. Or, like I said, use the log-likelihood.
 
 ==Tuning temporal smoothness==
 
