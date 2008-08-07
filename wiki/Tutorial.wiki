@@ -1,6 +1,8 @@
 #summary Tutorial.
 
-  This tutorial needs work !!!
+  This tutorial needs work !!!     
+
+   I AM GOING TO MAKE A MUCH BETTER TUTORIAL VERY SOON!! 
 
 ---
 = Tips on tuning the parameters with bilinlogistregmulti =
