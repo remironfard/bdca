@@ -4,6 +4,25 @@
 
    I AM GOING TO MAKE A MUCH BETTER TUTORIAL VERY SOON!! 
 
+
+=Tutorial for using BDCA with EEGLAB=
+
+This tutorial uses an example dataset. You can download it [http://code.google.com/p/bdca/downloads/list here]. When you have the example dataset proceed as follows...
+
+==Step 1. Making sure that epochs are correctly labeled==
+
+
+
+
+==Step 2. Tuning sigma==
+
+==Tuning temporal smoothness==
+
+==Tuning spatial smoothness==
+
+==Increasing the number of components==
+
+
 ---
 = Tips on tuning the parameters with bilinlogistregmulti =
 
