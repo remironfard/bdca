@@ -1,20 +1,43 @@
 #summary Tutorial.
 
-  This tutorial needs work !!!     
+=Before reading this tutorial=
 
-   I AM GOING TO MAKE A MUCH BETTER TUTORIAL VERY SOON!! 
+The tutorial uses an example dataset. You can download it [http://code.google.com/p/bdca/downloads/list here]. When you have the example dataset proceed as follows...
 
+----
 
 =Tutorial for using BDCA with EEGLAB=
 
-This tutorial uses an example dataset. You can download it [http://code.google.com/p/bdca/downloads/list here]. When you have the example dataset proceed as follows...
+==Step 1. Epoch your data==
 
-==Step 1. Making sure that epochs are correctly labeled==
+This is standard EEGLAB stuff. If you load the dataset in EEGLAB and scroll through it, you will see a bunch of events. We'll use those to epoch the dataset. You can do it from the EEGLAB menus, or simply run the following from the command line:
+{{{
+EEG = pop_epoch( EEG, {  '80'  '160'  }, [-0.1         0.5], 'newname', 'BDCA tutorial dataset epochs', 'epochinfo', 'yes');
+}}}
+So, now we have epochs available.
 
+_EEGLAB BUG: Note that if you set 0 instead of -0.1 above then EEGLAB will make a sometimes/somewhat useless event structure. Therefore, always include some samples preceeding the event, e.g. -0.1 instead of 0._
 
+==Step 2. Make BDCA know which labels to use for what==
 
+Ok, so we want to train a classifier which discriminates between epochs of label 160 and epochs of label 80. Now we use the BDCA toolbox:
+{{{
+EEG = pop_bdca_event2labels(EEG,160,80);
+}}}
+This tells the classifier that you want to discriminate epochs of type 160 against epochs of type 80. What happened is that a vector is now to be found in `EEG.bdca.labels` !  take a look at it if you want:
+{{{
+figure, plot(EEG.bdca.labels);
+}}}
 
-==Step 2. Tuning sigma==
+Note: if you wanted to discriminate, say 160 AND 170 versus 80 then you could do e.g. 
+{{{
+EEG = pop_bdca_event2labels(EEG,{160 170},80);
+}}}
+... but we don't need that for this tutorial.
+
+You can manually set the labels by changing `EEG.bdca.labels`. The function `pop_bdca_mat2labels` is meant to help you with that.
+
+==Step 3. Tuning sigma==
 
 ==Tuning temporal smoothness==
 
@@ -23,8 +46,10 @@ This tutorial uses an example dataset. You can download it [http://code.google.c
 ==Increasing the number of components==
 
 
----
-= Tips on tuning the parameters with bilinlogistregmulti =
+----
+=Tutorial for using BDCA without EEGLAB=
+
+== Tips on tuning the parameters with bilinlogistregmulti ==
 
 First, set R to 1
 {{{
