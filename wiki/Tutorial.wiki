@@ -68,7 +68,20 @@ and, again, look at `EEG.bdca.cvstats.Az` or `loglik`. As before with `sigma`, m
 
 ==Step 5. Tuning spatial smoothness==
 
+Tuning the spatial smoothness *requires that you have channel locations for all channels and that no two channels have the same coordinates*. (I'm just saying so that you don't get tempted and simply copy locations from other electrodes to channels that have no coordinates).
+
+{{{
+ls=0.1;  % this is relative to the EEGLAB head radius which I believe is 0.5
+nus=100; % 100 means: no ripple. Decrease this number to allow more ripply topographys
+EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,[],5);
+}}}
+So, tune `ls` and `nus` using `cvstats` as before.
+
 ==Step 6. Increasing the number of components==
+
+Finally, try increasing `R` to see the effect of having more components. Note that it will start to go pretty slow.
+
+==Step 7.  ... much more to come ... ==
 
 
 ----
