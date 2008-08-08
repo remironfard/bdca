@@ -22,13 +22,13 @@ end
 % find labels etc.
 labels = nan * zeros(1,EEG.trials);
 for epo = 1:EEG.trials
-%  if length(EEG.epoch(epo).eventlatency)>1
+  if iscell(EEG.epoch(epo).eventlatency)
     idx = find([EEG.epoch(epo).eventlatency{:}] == 0);
     tmp = [EEG.epoch(epo).eventtype{idx}];
-%  else
-%    idx = find([EEG.epoch(epo).eventlatency] == 0); 
-%    tmp = [EEG.epoch(epo).eventtype(idx)];
-%  end
+  else
+    idx = find([EEG.epoch(epo).eventlatency] == 0); 
+    tmp = [EEG.epoch(epo).eventtype(idx)];
+  end
   
   if ismember(tmp,contrast)
     labels(epo) = 1;
