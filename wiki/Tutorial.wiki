@@ -37,7 +37,7 @@ EEG = pop_bdca_event2labels(EEG,{160 170},80);
 
 You can manually set the labels by changing `EEG.bdca.labels`. The function `pop_bdca_mat2labels` is meant to help you with that.
 
-==Step 3. Tuning sigma==
+==Step 3. Tuning sigma / scaling the data==
 We're gonna tune `sigma` using 5-fold cross validation. Our initial guess is `sigma=0.1`, and also let's set `R=1` because it is much faster than `R>1` and it is sufficient for tuning `sigma`:
 {{{
 R=1;
@@ -55,6 +55,8 @@ for sigma=logspace(-2,0,30)
 end
 }}}
 and then choosing the `sigma` which has the highest `Az` in the result `happy`. Or, like I said, use the log-likelihood.
+
+Due to numerical issues, you might wanna scale your data so that the optimal sigma is roughly 1. Try for instance to scale your data by the reciprocal of the average channel standard deviation.
 
 ==Step 4. Tuning temporal smoothness==
 
