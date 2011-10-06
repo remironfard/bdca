@@ -1,7 +1,7 @@
-function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
+function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds,scale,datoract)
 % synopsis:
 %
-%   EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
+%   EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds,scale,datoract)
 %
 %  input:
 %
@@ -27,7 +27,8 @@ function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 %                  EEG.data(:,supportframes,:) will be used.
 %      folds : How many folds for crossvalidation. Set to 1 for training using the
 %              entire set. Set to e.g. 5 for 5-fold crossvalidation.
-%
+%      scale : scale the data. Optional, default 1. (EXPERIMENTAL)
+%   datoract : 1 for data, 0 for act. (EXPERIMENTAL) default 1.
 %
 %  output:
 %
@@ -46,6 +47,9 @@ function EEG = pop_bdca_train(EEG,R,sigma,lt,nut,ls,nus,supportframes,folds)
 % Author: Mads Dyrholm.
 
 % process commandline
+if nargin<11, datoract = 1; end
+if nargin<10, scale = 1; end
+
 if nargin < 9
   prompt={'Number of components','sigma','lt (ms)','nut','ls (electrode space)','nus','support frames, []=all','folds'};
   name='Input for pop_bilin';
@@ -97,6 +101,12 @@ c0_idx = find(EEG.bdca.labels==0);
 
 if isempty(supportframes), supportframes = 1:EEG.pnts; end
 
+if datoract == 1
+  DATORACT = EEG.data;
+else
+  DATORACT = EEG.icaact;
+end
+
 if folds<2 % train
 %  [u,t,b] = bilin_train(cat(3,EEG.data(:,:,c0_idx),EEG.data(:,:,c1_idx)),cat(2,EEG.bdca.labels(c0_idx),EEG.bdca.labels(c1_idx)),sigma,ls,nus,EEG.srate * lt / 1000,nut,R,spaceunits);
  
@@ -104,7 +114,7 @@ if folds<2 % train
   gpa = [sigma ls nus];
   gpb = [sigma (EEG.srate * lt / 1000) nut];
   
-  [b,u,t] = bilinlogistregmultigp(double(cat(3,EEG.data(:,supportframes,c0_idx),EEG.data(:,supportframes,c1_idx))),...
+  [b,u,t] = bilinlogistregmultigp(scale*double(cat(3,DATORACT(:,supportframes,c0_idx),DATORACT(:,supportframes,c1_idx))),...
                                   cat(2,EEG.bdca.labels(c0_idx),EEG.bdca.labels(c1_idx)),...
                                   R,...
                                   sigw0,...
@@ -134,7 +144,7 @@ else % cv
     gpa = [sigma ls nus];
     gpb = [sigma (EEG.srate * lt / 1000) nut];
     
-    [b,u,t] = bilinlogistregmultigp(double(cat(3,EEG.data(:,supportframes,c0_idx_train),EEG.data(:,supportframes,c1_idx_train))),...
+    [b,u,t] = bilinlogistregmultigp(scale*double(cat(3,DATORACT(:,supportframes,c0_idx_train),DATORACT(:,supportframes,c1_idx_train))),...
 			  cat(2,EEG.bdca.labels(c0_idx_train),EEG.bdca.labels(c1_idx_train)),...
 			  R,...
 			  sigw0,...
@@ -150,7 +160,7 @@ else % cv
     
     % validate
     
-    [Ey,pot] = bilinlogistregmultigp_run(cat(3,EEG.data(:,supportframes,c0_idx_validate),EEG.data(:,supportframes,c1_idx_validate)), b,u,t);
+    [Ey,pot] = bilinlogistregmultigp_run(cat(3,scale*DATORACT(:,supportframes,c0_idx_validate),DATORACT(:,supportframes,c1_idx_validate)), b,u,t);
     
     huskeL = [huskeL, cat(2,EEG.bdca.labels(c0_idx_validate),EEG.bdca.labels(c1_idx_validate))];
     huskefi= [huskefi, Ey];
@@ -172,6 +182,7 @@ end
 
 
 % huske
+EEG.bdca.datoract          = datoract;
 EEG.bdca.cht.R             = R;  
 EEG.bdca.cht.sigma         = sigma;
 EEG.bdca.cht.lt            = lt;

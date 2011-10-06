@@ -128,9 +128,9 @@ end
 function K = sqexp(dim,l)
 if sum(size(dim))==2
   K = repmat(1:dim,[dim 1]);
-  K = abs(K-K')/l;
+  K = abs(K-K');
 else
-  K = dim/l;
+  K = dim;
 end
 K = exp(-K.^2 ./ (2*(l+eps)^2));
 

@@ -33,10 +33,23 @@ if nargin < 2
   alpha              = eval(sprintf('[%s]',answer{1}));
 end
 
-if ~isempty(alpha)
-  [G,alpha,S,Ci,Co,info] = constrica(double(EEG.data(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.cht.u,EEG.bdca.cht.t,alpha);
+
+try 
+  datoract = EEG.bdca.datoract;
+catch
+  datoract = 1;
+end
+if datoract==1
+  DATORACT=EEG.data;
 else
-  [G,alpha,S,Ci,Co,info] = constrica(double(EEG.data(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.cht.u,EEG.bdca.cht.t);
+  DATORACT=EEG.icaact;
+end
+
+
+if ~isempty(alpha)
+  [G,alpha,S,Ci,Co,info] = constrica(double(DATORACT(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.cht.u,EEG.bdca.cht.t,alpha);
+else
+  [G,alpha,S,Ci,Co,info] = constrica(double(DATORACT(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.cht.u,EEG.bdca.cht.t);
 end
 EEG.bdca.ica.G = G;
 EEG.bdca.ica.S = S;

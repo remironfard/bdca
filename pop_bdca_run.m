@@ -25,13 +25,23 @@ c0_idx = find(EEG.bdca.labels==0);
 
 idx = sort([c1_idx,c0_idx]);
 
-[Ey,pot] = bilinlogistregmultigp_run(EEG.data(:,supportframes,idx), b,u,t);
+try 
+  datoract = EEG.bdca.datoract;
+catch
+  datoract = 1;
+end
+if datoract==1
+  DATORACT=EEG.data;
+else
+  DATORACT=EEG.icaact;
+end
+[Ey,pot] = bilinlogistregmultigp_run(DATORACT(:,supportframes,idx), b,u,t);
    
 EEG.bdca.Ey  = Ey;
 EEG.bdca.pot = pot;
 
 try
-  EEG.bdca.ica.S = bilin_sources(EEG.bdca.cht.u,EEG.bdca.cht.t,double(EEG.data(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.ica.G);
+  EEG.bdca.ica.S = bilin_sources(EEG.bdca.cht.u,EEG.bdca.cht.t,double(DATORACT(:,EEG.bdca.cht.supportframes,:)),EEG.bdca.ica.G);
 end
 
 % aux
